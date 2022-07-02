@@ -5,7 +5,7 @@
     "build": "max build",
     "postinstall": "max setup",
     "start": "npm run dev",
-    "pm2Start": "pm2 start npm --name restCounterWeb -- run dev PORT=8888"
+    "pm2Start": "pm2 start npm --name restCounterWeb -- run dev PORT=6666"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
