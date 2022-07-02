@@ -1,6 +1,6 @@
 import { request } from '@umijs/max';
 
-const Host = 'http://127.0.0.1:7001'
+const Host = 'http://127.0.0.1:8889'
 
 export async function getLPRList(
   params: {},

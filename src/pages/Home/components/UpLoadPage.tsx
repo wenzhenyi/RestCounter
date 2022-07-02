@@ -13,7 +13,7 @@ export default (props: UploadPageProps) => {
   const UploadProp: UploadProps = {
     name: 'file',
     multiple: false,
-    action: 'http://127.0.0.1:7001/api/uploadFile',
+    action: 'http://127.0.0.1:8889/api/uploadFile',
     onChange(info) {
       const { status, response } = info.file;
       if (status !== 'uploading') {
