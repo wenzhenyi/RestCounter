@@ -8,6 +8,7 @@ import { Upload, UploadProps, message } from 'antd';
 import { useEffect, useState } from 'react';
 import { downloadTemplate } from '@/services/HomeApi/service';
 import { Link } from '@umijs/max';
+import { POSTHOST } from '@/services/common';
 
 const { Dragger } = Upload;
 
@@ -51,13 +52,13 @@ export default () => {
 
   const getTemplateFile = (e: any) => {
     e.stopPropagation()
-    downloadFileByForm('http://127.0.0.1:8889/api/downloadTemplate', '模板文件.xlsx')
+    downloadFileByForm(`${POSTHOST}/api/downloadTemplate`, '模板文件.xlsx')
   } 
 
   const UploadProp: UploadProps = {
     name: 'file',
     multiple: false,
-    action: 'http://127.0.0.1:8889/api/uploadFile',
+    action: `${POSTHOST}/api/uploadFile`,
     onChange(info) {
       const { status, response } = info.file;
       if (status !== 'uploading') {

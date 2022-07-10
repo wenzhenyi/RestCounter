@@ -1,12 +1,11 @@
 import { request } from '@umijs/max';
-
-const Host = 'http://127.0.0.1:8889'
+import { POSTHOST } from '../common';
 
 export async function getLPRList(
   params: {},
   options?: { [key: string]: any },
 ) {
-  return request<any>(`${Host}/api/getLPR`, {
+  return request<any>(`${POSTHOST}/api/getLPR`, {
     method: 'GET',
     params: {
       ...params,
@@ -19,7 +18,7 @@ export async function updateLPR(
   params: { data: any },
   options?: { [key: string]: any },
 ) {
-  return request<any>(`${Host}/api/uploadLPR`, {
+  return request<any>(`${POSTHOST}/api/uploadLPR`, {
     method: 'POST',
     data: params.data,
     ...(options || {}),
