@@ -34,6 +34,11 @@ export default defineConfig({
       path: '/lprManage',
       component: './LprManage',
     },
+    {
+      name: '使用说明',
+      path: '/use',
+      component: './Use',
+    }
   ],
   npmClient: 'yarn',
 });

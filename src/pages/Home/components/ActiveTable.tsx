@@ -17,7 +17,7 @@ export default (props: any) => {
 
   const [editableKeys, setEditableRowKeys] = useState<React.Key[]>(() => []);
   const [dataSource, setDataSource] = useState<DataSourceType[]>(() => tableData);
-
+  
   const originColumn: ProColumns<DataSourceType>[] = [
       {
         title: '本金',
@@ -34,8 +34,9 @@ export default (props: any) => {
         valueType: 'date',
       },
       {
-        title: '合同约定年利率',
+        title: '合同约定年利率(%)',
         dataIndex: '合同约定年利率',
+        valueType: 'percent',
       },
       {
         title: '还款时间',
@@ -154,11 +155,11 @@ export default (props: any) => {
               key="save"
               onClick={() => {
                 // dataSource 就是当前数据，可以调用 api 将其保存
-                // console.log(dataSource);
+                console.log(dataSource);
                 if (onSaveClick) onSaveClick(dataSource)
               }}
             >
-              重新计算
+              开始计算
             </Button>,
           ];
         }}

@@ -12,3 +12,16 @@ export async function computeData(
     ...(options || {}),
   });
 }
+
+export async function downloadTemplate(
+  params?: {},
+  options?: { [key: string]: any },
+) {
+  return request<any>(`${Host}/api/downloadTemplateFile`, {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+}

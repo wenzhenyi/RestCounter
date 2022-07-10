@@ -14,3 +14,14 @@ export async function getLPRList(
     ...(options || {}),
   });
 }
+
+export async function updateLPR(
+  params: { data: any },
+  options?: { [key: string]: any },
+) {
+  return request<any>(`${Host}/api/uploadLPR`, {
+    method: 'POST',
+    data: params.data,
+    ...(options || {}),
+  });
+}

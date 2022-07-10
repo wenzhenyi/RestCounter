@@ -11,7 +11,7 @@ import { Button, Divider, Drawer, message } from 'antd';
 import React, { useRef, useState } from 'react';
 import CreateForm from './components/CreateForm';
 import UpdateForm, { FormValueType } from './components/UpdateForm';
-import { getLPRList } from '@/services/LprApi/service';
+import { getLPRList, updateLPR } from '@/services/LprApi/service';
 
 const { addUser, queryUserList, deleteUser, modifyUser } =
   services.UserController;
@@ -23,13 +23,13 @@ const { addUser, queryUserList, deleteUser, modifyUser } =
 const handleAdd = async (fields: API.UserInfo) => {
   const hide = message.loading('正在添加');
   try {
-    await addUser({ ...fields });
+    await updateLPR({ data: fields });
     hide();
-    message.success('添加成功');
+    message.success('新增/调整成功~~');
     return true;
   } catch (error) {
     hide();
-    message.error('添加失败请重试！');
+    message.error('调整失败请重试！');
     return false;
   }
 };
@@ -132,10 +132,7 @@ const TableList: React.FC<unknown> = () => {
     {
       title: '六月',
       dataIndex: 'month6',
-      render: (value: any) => {
-        console.log("value!!!", value)
-        return value ? `${(value * 100).toFixed(2)}%` : '-'
-      }
+      render: (value: any) => value ? `${(value * 100).toFixed(2)}%` : '-'
     },
     {
       title: '七月',
@@ -188,6 +185,98 @@ const TableList: React.FC<unknown> = () => {
     // },
   ];
 
+  const createColumns = [
+    {
+      title: '年份',
+      dataIndex: 'year',
+      formItemProps: {
+        rules: [
+          {
+            required: true,
+            message: '名称为必填项',
+          },
+        ],
+      },
+    },
+    {
+      title: '月份',
+      dataIndex: 'month',
+      valueType: 'select',
+      fieldProps: {
+        options: [
+          {
+            label: '一月',
+            value: '0',
+          },
+          {
+            label: '二月',
+            value: '1',
+          },
+          {
+            label: '三月',
+            value: '2',
+          },
+          {
+            label: '四月',
+            value: '3',
+          },
+          {
+            label: '五月',
+            value: '4',
+          },
+          {
+            label: '六月',
+            value: '5',
+          },
+          {
+            label: '七月',
+            value: '6',
+          },
+          {
+            label: '八月',
+            value: '7',
+          },
+          {
+            label: '九月',
+            value: '8',
+          },
+          {
+            label: '十月',
+            value: '9',
+          },
+          {
+            label: '十一月',
+            value: '10',
+          },
+          {
+            label: '十二月',
+            value: '11',
+          },
+        ],
+      },
+      formItemProps: {
+        rules: [
+          {
+            required: true,
+            message: '名称为必填项',
+          },
+        ],
+      },
+    },
+    {
+      title: '新增/调整LPR值（%）',
+      dataIndex: 'lpr',
+      formItemProps: {
+        rules: [
+          {
+            required: true,
+            message: '名称为必填项',
+          },
+        ],
+      },
+    }
+  ]
+
   return (
     <PageContainer
       header={{
@@ -200,14 +289,14 @@ const TableList: React.FC<unknown> = () => {
         search={false}
         options={false}
         toolBarRender={() => [
-          <p></p>
-          // <Button
-          //   key="1"
-          //   type="primary"
-          //   onClick={() => handleModalVisible(true)}
-          // >
-          //   调整LPR
-          // </Button>,
+          // <p></p>
+          <Button
+            key="1"
+            type="primary"
+            onClick={() => handleModalVisible(true)}
+          >
+            新增/调整LPR
+          </Button>,
         ]}
         request={async (params, sorter, filter) => {
           const { data, success } = await getLPRList({
@@ -217,7 +306,7 @@ const TableList: React.FC<unknown> = () => {
             sorter,
             filter,
           });
-          const formatData = data.reverse().map((item) => {
+          const formatData = data.sort((a, b) => b.year - a.year).map((item) => {
             const obj: any = {
               year: item.year
             }
@@ -242,6 +331,7 @@ const TableList: React.FC<unknown> = () => {
       >
         <ProTable<API.UserInfo, API.UserInfo>
           onSubmit={async (value) => {
+            console.log("value", value);
             const success = await handleAdd(value);
             if (success) {
               handleModalVisible(false);
@@ -252,7 +342,7 @@ const TableList: React.FC<unknown> = () => {
           }}
           rowKey="id"
           type="form"
-          columns={columns}
+          columns={createColumns}
         />
       </CreateForm>
       {stepFormValues && Object.keys(stepFormValues).length ? (

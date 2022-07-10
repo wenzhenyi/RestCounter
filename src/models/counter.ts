@@ -2,7 +2,7 @@
 import { useState } from 'react';
 
 const useCounter = () => {
-  const [counterData, setCounterData] = useState<any>({});
+  const [counterData, setCounterData] = useState<any>(undefined);
   return {
     counterData,
     setCounterData,

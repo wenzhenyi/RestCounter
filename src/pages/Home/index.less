@@ -24,3 +24,63 @@
     // }
   }
 }
+
+.totalItem {
+  margin-right: 20px;
+  span {
+    font-size: 20px;
+    font-weight: 700;
+  }
+}
+
+.cardBg {
+  background: linear-gradient(to right bottom, rgb(0, 127, 255), rgb(0, 89, 178) 120%);
+  box-shadow: rgb(0 0 0 / 10%) 0px 20px 25px, rgb(0 0 0 / 4%) 0px 10px 10px;
+  color: white;
+  transition: opacity 700ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  opacity: 1;
+}
+
+.cardBg2 {
+  background: linear-gradient(to right bottom, #4caf50, #1b5e20 120%);
+  box-shadow: rgb(0 0 0 / 10%) 0px 20px 25px, rgb(0 0 0 / 4%) 0px 10px 10px;
+  color: white;
+  transition: opacity 700ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  opacity: 1;
+}
+
+.cardDetail {
+  color: #c4ffc6;
+  position: relative;
+  top: 30px;
+  &:hover {
+    color: #1cda24;
+  }
+}
+
+.pageContent {
+  :global {
+    .ant-upload {
+      width: 500px;
+    }
+  }
+}
+
+body {
+  :global {
+    .ant-popover-arrow-content {
+      &::before {
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+    }
+  }
+}
+
+.backIcon {
+  margin-right: 30px;
+  cursor: pointer;
+  color: #1890ff;
+  &:hover {
+    color: rgb(255, 213, 0);
+  }
+}

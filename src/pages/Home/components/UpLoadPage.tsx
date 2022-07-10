@@ -37,11 +37,7 @@ export default (props: UploadPageProps) => {
   };
 
   return (
-    <PageContainer
-      header={{
-        title: '上传文件',
-      }}
-    >
+    <>
       <Dragger
         {...UploadProp}
         >
@@ -55,6 +51,6 @@ export default (props: UploadPageProps) => {
           <a>可下载模板文件</a>
         </p>
       </Dragger>
-    </PageContainer>
+      </>
   )
 }
