@@ -13,6 +13,9 @@ import result4 from './result4.png'
 import origin1 from './origin1.png'
 import origin2 from './origin2.png'
 import origin3 from './origin3.png'
+import origin4 from './origin4.png'
+import origin5 from './origin5.png'
+import origin6 from './origin6.png'
 
 
 
@@ -57,6 +60,12 @@ const UsePage: React.FC<unknown> = () => {
               <img src={origin2}></img>
               <h3>3. 仅填写还款信息</h3>
               <img src={origin3}></img>
+              <h3>举个栗子：以下的输出结果是相等的</h3>
+              <img src={origin5}></img>
+              <img src={origin4}></img>
+
+              <h3 style={{marginTop: '40px'}}>支持多笔欠款，多笔还款的计算</h3>
+              <img src={origin6}></img>
             </div>
 
 
